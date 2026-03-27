@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,11 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PDM_DiegoCastrolab2Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                    App()
+                    App(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -63,17 +60,16 @@ fun GreetingPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun App(){
+fun App(modifier: Modifier = Modifier){
     val usuario: MutableState<String> = remember { mutableStateOf("") }
+    val entries = remember { mutableStateListOf<String>() }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
 
     ){
-        val entries = remember<List<String>> { mutableListOf() }
-
         TextField(
             value = usuario.value,
             onValueChange = { usuario.value = it },
@@ -82,27 +78,31 @@ fun App(){
 
         Button(
             onClick = {
-                //usuario.value =
-                //entries.set(usuario.value)
+                if (usuario.value.isNotBlank()) {
+                    entries.add(usuario.value)
+                    usuario.value = ""
+                }
             }
         ) {
             Text(text = "Guardar")
         }
-        Row() {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             Text(text = "Listado de nombres y posicion en la lista")
             Button(
                 onClick = {
-                    //usuario.value = ""
-
+                    entries.clear()
                 }
 
             ) {
                 Text(text = "Limpiar" )
             }
         }
-        //val entries: List<String> = listOf("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten")
+        
         LazyColumn {
-            itemsIndexed(entries.toList()) { index, item ->
+            itemsIndexed(entries) { index, item ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -121,29 +121,3 @@ fun App(){
     }
 
 }
-
-
-
-/*
-//@Preview (showBackground = true)
-@Composable
-Column(
-    modifier = Modifier.fillMaxSize(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-
-    TextField()
-
-    Button()
-
-    Row(
-        Text()
-        Button()
-    )
-    LazyColumn()
-
-
-
-
-)
-*/
