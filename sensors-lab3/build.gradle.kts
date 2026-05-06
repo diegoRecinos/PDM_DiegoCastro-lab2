@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pdm_diegocastro_lab2"
+    namespace = "com.pdm0126.sensors_lab3"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.pdm_diegocastro_lab2"
+        applicationId = "com.pdm0126.sensors_lab3"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -48,8 +48,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.navigation3.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

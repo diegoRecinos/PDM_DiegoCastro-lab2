@@ -36,106 +36,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PDM_DiegoCastrolab2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    App(modifier = Modifier.padding(innerPadding))
-                }
+                App()
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-
-@Composable
-fun GreetingPreview() {
-    PDM_DiegoCastrolab2Theme {
-        Greeting("placeholder")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun App(modifier: Modifier = Modifier){
-    val usuario: MutableState<String> = remember { mutableStateOf("") }
-    val entries = remember { mutableStateListOf<String>() }
-
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        TextField(
-            value = usuario.value,
-            onValueChange = { usuario.value = it },
-            label = { Text("Nombre de usuario") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-        )
-
-        Button(
-            onClick = {
-                if (usuario.value.isNotBlank()) {
-                    entries.add(usuario.value)
-                    usuario.value = ""
-                }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        ) {
-            Text(text = "Guardar")
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = "Listado de nombres y posición")
-            Button(
-                onClick = {
-                    if (entries.isNotEmpty()) {
-                        entries.removeAt(entries.lastIndex)
-                    }
-                }
-            ) {
-                Text(text = "Limpiar" )
-            }
-        }
-        
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
-        ) {
-            itemsIndexed(entries) { index, item ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = item
-                    )
-                    Text(
-                        text = (index + 1).toString()
-                    )
-                }
-            }
-        }
-    }
-}
