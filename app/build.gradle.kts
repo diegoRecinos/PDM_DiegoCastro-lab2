@@ -57,4 +57,19 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    //navigation
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+
+    //serialization
+    implementation(libs.kotlinx.serialization.core)
+
+    //coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+
+    // ... otras dependenciasimplementation("androidx.compose.material:material-icons-core")
+    implementation(libs.androidx.compose.material.icons.extended)
 }

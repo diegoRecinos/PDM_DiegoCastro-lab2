@@ -12,14 +12,15 @@ import com.example.pdm_diegocastro_lab2.ui.screens.HomeScreen
 
 import com.example.pdm_diegocastro_lab2.ui.screens.ListScreen
 import com.example.pdm_diegocastro_lab2.ui.screens.Routes
+import com.example.pdm_diegocastro_lab2.ui.screens.SensorScreen
 
 @Composable
 fun App(modifier: Modifier = Modifier){
     //1. creamos el backstack iniciando en home
-    val backStack = rememberNavBackStack(Routes.HomeScreen)
+    val backStack = rememberNavBackStack<Routes>(initialKey = Routes.HomeScreen)
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         //topBar = { MainTopBar(title = "Nav3 App") },
 
         ) { innerPadding ->
@@ -30,14 +31,21 @@ fun App(modifier: Modifier = Modifier){
             modifier = Modifier.padding(innerPadding),
             onBack = { backStack.removeLastOrNull() }, //maneja boton de atras
 
-            entryProvider = entryProvider {
+            entryProvider = entryProvider<Routes> {
                 //3. Mapear cada objeto de Routes.kt a un composable
                 entry<Routes.HomeScreen> {
-                    Routes.HomeScreen(onNavigate = { backStack.add(Routes.ListScreen) })
+                    HomeScreen(
+                        onNavigateToList = { backStack.add(Routes.ListScreen) },
+                        onNavigateToSensor = { backStack.add(Routes.SensorScreen) }
+                    )
                 }
 
                 entry<Routes.ListScreen> {
                     ListScreen(onBack = { backStack.removeLastOrNull() })
+                }
+
+                entry<Routes.SensorScreen> {
+                    SensorScreen(onBack = { backStack.removeLastOrNull() })
                 }
 
             }
@@ -45,5 +53,3 @@ fun App(modifier: Modifier = Modifier){
     }
 
 }
-
-

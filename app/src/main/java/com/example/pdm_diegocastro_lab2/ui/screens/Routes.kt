@@ -1,5 +1,6 @@
 package com.example.pdm_diegocastro_lab2.ui.screens
 
+import androidx.compose.foundation.layout.WindowInsets
 import kotlinx.serialization.Serializable
 
 @Serializable

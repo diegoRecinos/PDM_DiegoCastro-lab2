@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,12 +53,7 @@ fun useSensor(sensorType: Int): List<Float> {
 }
 
 @Composable
-fun SensorScreen(modifier: Modifier = Modifier) {
-
-}
-
-@Composable
-fun ProximitySensor () {
+fun SensorScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     val proximityValues = useSensor(Sensor.TYPE_PROXIMITY)
 
     Column (
@@ -67,6 +63,10 @@ fun ProximitySensor () {
     ) {
         Text(text = "Sensor de Proximidad", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Text(text = "Distancia:${proximityValues[0]} cm", fontSize = 18.sp)
+    }
+
+    Button(onClick = onBack) {
+        Text("Volver")
     }
 
 }

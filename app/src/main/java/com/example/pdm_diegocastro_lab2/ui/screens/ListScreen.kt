@@ -23,8 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+
 @Composable
-fun ListScreen (modifier: Modifier = Modifier){
+fun ListScreen (onBack: () -> Unit, modifier: Modifier = Modifier){
     val usuario: MutableState<String> = remember { mutableStateOf("") }
     val entries = remember { mutableStateListOf<String>() }
 
@@ -99,5 +100,10 @@ fun ListScreen (modifier: Modifier = Modifier){
                 }
             }
         }
+
+        Button(onClick = onBack) {
+            Text("Volver")
+        }
+
     }
 }
