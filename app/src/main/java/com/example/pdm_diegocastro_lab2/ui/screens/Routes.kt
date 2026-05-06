@@ -1,16 +1,16 @@
 package com.example.pdm_diegocastro_lab2.ui.screens
 
-import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface Routes : NavKey {
+sealed interface Routes {
 
     @Serializable
-    data object Home : com.pdm0126.p1_resources.ui.screens.Routes
+    data object HomeScreen : Routes
 
     @Serializable
-    data object Screen1 : com.pdm0126.p1_resources.ui.screens.Routes
+    data object ListScreen : Routes
 
-
+    @Serializable
+    data object SensorScreen : Routes
 }
