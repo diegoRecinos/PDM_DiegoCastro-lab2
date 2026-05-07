@@ -60,7 +60,6 @@ fun useSensor(sensorType: Int): List<Float> {
 fun SensorScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     val proximityValues = useSensor(Sensor.TYPE_PROXIMITY)
 
-    // Obtenemos la distancia de forma segura
     val distance = proximityValues.firstOrNull() ?: 0f
 
     Column(
@@ -70,17 +69,15 @@ fun SensorScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     ) {
         Text(text = "Sensor de Proximidad", fontSize = 24.sp, fontWeight = FontWeight.Bold)
 
-        // Verificamos si el sensor está disponible (la lista no está vacía)
         if (proximityValues.isNotEmpty()) {
             Text(text = "Distancia: $distance cm", fontSize = 18.sp)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Usamos la lógica de comparación con el valor real del sensor
             if (distance < 5) {
-                Text(text = "ESTADO: CERCA", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
+                Text(text = "ESTADO: CERCA", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold , color= Color.Red)
             } else {
-                Text(text = "ESTADO: LEJOS", fontSize = 20.sp)
+                Text(text = "ESTADO: LEJOS", fontSize = 20.sp, color = Color.Green, fontWeight = FontWeight.ExtraBold)
             }
         } else {
             Text(
