@@ -1,4 +1,4 @@
-include(":sensors-lab3")
+
 pluginManagement {
     repositories {
         google {
