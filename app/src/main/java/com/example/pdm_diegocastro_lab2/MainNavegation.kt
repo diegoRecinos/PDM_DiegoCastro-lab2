@@ -17,7 +17,7 @@ import com.example.pdm_diegocastro_lab2.ui.screens.SensorScreen
 @Composable
 fun App(modifier: Modifier = Modifier){
     //1. creamos el backstack iniciando en home
-    val backStack = rememberNavBackStack<Routes>(initialKey = Routes.HomeScreen)
+    val backStack = rememberNavBackStack(Routes.HomeScreen)
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -31,7 +31,7 @@ fun App(modifier: Modifier = Modifier){
             modifier = Modifier.padding(innerPadding),
             onBack = { backStack.removeLastOrNull() }, //maneja boton de atras
 
-            entryProvider = entryProvider<Routes> {
+            entryProvider = entryProvider{
                 //3. Mapear cada objeto de Routes.kt a un composable
                 entry<Routes.HomeScreen> {
                     HomeScreen(

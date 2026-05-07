@@ -1,10 +1,10 @@
 package com.example.pdm_diegocastro_lab2.ui.screens
 
-import androidx.compose.foundation.layout.WindowInsets
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface Routes {
+sealed interface Routes: NavKey {
 
     @Serializable
     data object HomeScreen : Routes
